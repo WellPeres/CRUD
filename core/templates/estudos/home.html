@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Home</title>
+</head>
+<body>
+    <h1>Testando a pagina de View</h1>
+    
+
+    <ul>
+        {% for pessoa in pessoas %}
+            <li> {{pessoa.id}} - {{pessoa}} - {{pessoa.ultimo_nome}} 
+                <a href="{% url 'editar' pessoa.id %}">Editar</a>
+                <a href="{% url 'delete' pessoa.id %}">Deletar</a>
+        
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+
+    {% csrf_token %}
+    <form action="{% url 'salvar' %} "method="POST">
+        {% csrf_token %}
+        <h4>
+        Nome: <input type="text" name="nome"><br>
+        Sobrenome: <input type="text" name="sobrenome"><br>
+        Data De Nascimento:<input type="text" name="data"><br>
+        E-mail: <input type="text" name="mail"><br>
+        <button type="submit">Salvar</button>
+        </h3>
+    </form>
+</body>
+</html>
